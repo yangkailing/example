@@ -10,4 +10,5 @@
 3. 新增README.md，記錄學習檔案<br />
 4. 在該 repository 建立 week1 資料夾<br />
 5. 新增 hw1.Rmd<br />
+###[week1](https://github.com/yangkailing/example/tree/master/week1)
 ## At home<br />
