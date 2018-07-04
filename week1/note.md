@@ -17,7 +17,11 @@ characters（字串）"string"<br />
 *查看種類利用class()<br />
 ## Vectors<br />
 with the combine function c()<br />
+### 選取<br />
+知道該物件名稱["string"]<br />
+挑選兩個以上[c("Monday","Tuesday")]<br />
 第一個是[1]<br />
+挑選兩個以上表列出來用[c(2,3,4)]等同[2:4]<br />
 ### 幫他取名字用names()<br />
 ex:poker_vector <- c(140, -50, 20, -120, 240)<br />
 ex:names(poker_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")<br />
@@ -25,4 +29,10 @@ ex:days_vector<- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")<br />
       names(poker_vector) <-   days_vector<br />
 ### 算總和用sum()<br />
 括號內所有數字總和<br />
+### 算平均用mean()<br />
+括號內所有數字平均<br />
+### 也可以比大小<br />
+vector每一個都會比較，並輸出TRUE FALSE<br />
+若要直接找出那些天及數值則利用比大小後選取<br />
+## Matrix<br />
 
