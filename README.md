@@ -5,7 +5,8 @@
 這是我第一次學習R語言，希望在這六周結束後，我可以比現在更厲害<br />
 # week_1
 ##In class<br />
-1. 下載GitHub 及GitHub Desktop
+1. 下載GitHub 及GitHub Desktop<br />
 2. 建立README.MD<br />
+
 ##At home<br />
 1.
