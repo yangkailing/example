@@ -1,22 +1,22 @@
 # note
-## ¥|«h¹Bºâ<br />
-¥[¡G1+1<br />
-´î¡G2-1<br />
-­¼¡G2*2<br />
-°£¡]ºâ¥X¤p¼Æ¡^¡G5/3<br />
-¾l¼Æ¡G5%%3<br />
-##ÅÜ¼Æ<br />
+## å››å‰‡é‹ç®—<br />
+åŠ ï¼š1+1<br />
+æ¸›ï¼š2-1<br />
+ä¹˜ï¼š2*2<br />
+é™¤ï¼ˆç®—å‡ºå°æ•¸ï¼‰ï¼š5/3<br />
+é¤˜æ•¸ï¼š5%%3<br />
+## è®Šæ•¸<br />
 x<-2<br />
 x<-string<br />
-*«D¼Æ¦r¤£¥i¬Û¥[´î<br />
-###ÅÜ¼ÆºØÃş»¡©ú<br />
-numerics¡]¼Æ¦r¡^4.5<br />
-integers¡]¾ã¼Æ¡^4<br />
-logical¡]ÅŞ¿è¡^TRUE FALSE<br />
-characters¡]¦r¦ê¡^"string"<br />
-*¬d¬İºØÃş§Q¥Îclass()<br />
+*éæ•¸å­—ä¸å¯ç›¸åŠ æ¸›<br />
+### è®Šæ•¸ç¨®é¡èªªæ˜<br />
+numericsï¼ˆæ•¸å­—ï¼‰4.5<br />
+integersï¼ˆæ•´æ•¸ï¼‰4<br />
+logicalï¼ˆé‚è¼¯ï¼‰TRUE FALSE<br />
+charactersï¼ˆå­—ä¸²ï¼‰"string"<br />
+*æŸ¥çœ‹ç¨®é¡åˆ©ç”¨class()<br />
 ## Vectors<br />
 with the combine function c()<br />
-À°¥L¨ú¦W¦r¥Înames()<br />
+å¹«ä»–å–åå­—ç”¨names()<br />
 ex:poker_vector <- c(140, -50, 20, -120, 240)<br />
    names(poker_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")<br />
