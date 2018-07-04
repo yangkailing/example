@@ -17,6 +17,12 @@ characters（字串）"string"<br />
 *查看種類利用class()<br />
 ## Vectors<br />
 with the combine function c()<br />
-幫他取名字用names()<br />
+第一個是[1]<br />
+### 幫他取名字用names()<br />
 ex:poker_vector <- c(140, -50, 20, -120, 240)<br />
-   names(poker_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")<br />
+ex:names(poker_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")<br />
+ex:days_vector<- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")<br />
+      names(poker_vector) <-   days_vector<br />
+### 算總和用sum()<br />
+括號內所有數字總和<br />
+
