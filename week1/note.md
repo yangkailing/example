@@ -55,7 +55,9 @@ my_matrix[1:3,2:4]<br />
 star_wars_matrix <- matrix(box_office, nrow = 3, byrow = TRUE,<br />
 dimnames = list(c("A New Hope", "The Empire Strikes Back", "Return of the Jedi"),c("US", "non-US")))<br />
 ## factors分類<br />
-分成 nominal categorical variable 和 an ordinal categorical variable<br />
+分成 nominal categorical variable 和  ordinal categorical variable<br />
 ### 建立factor<br />
 factor()<br />
+factor(vector_name, order = TRUE, levels = c("Low", "Medium", "High"))
+
 
