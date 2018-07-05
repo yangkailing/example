@@ -50,6 +50,9 @@ colnames(matrix_name) <- col_names_vector<br />
 ex:big_matrix <- cbind(matrix1, matrix2, vector1)<br />
 ### 選取<br />
 my_matrix[1:3,2:4]<br />
+全選:my_matrix[,]<br />
 ### 應用<br />
 star_wars_matrix <- matrix(box_office, nrow = 3, byrow = TRUE,<br />
 dimnames = list(c("A New Hope", "The Empire Strikes Back", "Return of the Jedi"),c("US", "non-US")))<br />
+## factors<br />
+
