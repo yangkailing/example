@@ -22,6 +22,8 @@ with the combine function c()<br />
 挑選兩個以上[c("Monday","Tuesday")]<br />
 第一個是[1]<br />
 挑選兩個以上表列出來用[c(2,3,4)]等同[2:4]<br />
+### 合併<br />
+c(vector1,vector2)<br />
 ### 幫他取名字用names()<br />
 ex:poker_vector <- c(140, -50, 20, -120, 240)<br />
 ex:names(poker_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")<br />
@@ -35,4 +37,14 @@ ex:days_vector<- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")<br />
 vector每一個都會比較，並輸出TRUE FALSE<br />
 若要直接找出那些天及數值則利用比大小後選取<br />
 ## Matrix<br />
-
+### construct a matrix<br />
+matrix(1:9, byrow = TRUE, nrow = 3)<br />
+3*3矩陣<br />
+### 命名<br />
+rownames(matrix_name) <- row_names_vector<br />
+colnames(matrix_name) <- col_names_vector<br />
+### 總和<br />
+利用rowSums()<br />
+### 應用
+star_wars_matrix <- matrix(box_office, nrow = 3, byrow = TRUE,<br />
+dimnames = list(c("A New Hope", "The Empire Strikes Back", "Return of the Jedi"),c("US", "non-US")))
