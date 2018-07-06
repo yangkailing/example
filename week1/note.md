@@ -10,6 +10,7 @@ remainder：5%%3<br />
 ### logical<br />
 AND:&(only the first one &&)<br />
 OR:|(only the first one ||)<br />
+Watch out: 3 < x < 7 to check if x is between 3 and 7 will not work; you'll need 3 < x & x < 7 for that.<br />
 <br />
 ## variable<br />
 x<-2<br />
@@ -37,7 +38,7 @@ ex:names(poker_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Frida
 ex:days_vector<- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")<br />
       names(poker_vector) <-   days_vector<br />
 ### sum()<br />
-add all the numbers in the vector<br />
+add all the numbers in the vector OR count something<br />
 ### mean()<br />
 average all the numbers in the vector<br />
 <br />
