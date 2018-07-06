@@ -56,8 +56,25 @@ star_wars_matrix <- matrix(box_office, nrow = 3, byrow = TRUE,<br />
 dimnames = list(c("A New Hope", "The Empire Strikes Back", "Return of the Jedi"),c("US", "non-US")))<br />
 ## factors分類<br />
 分成 nominal categorical variable 和  ordinal categorical variable<br />
+會保留原狀<br />
 ### 建立factor<br />
 factor()<br />
-factor(vector_name, order = TRUE, levels = c("Low", "Medium", "High"))
-
-
+factor(vector_name, order = TRUE, levels = c("Low", "Medium", "High"))<br />
+### 改變順序<br />
+用levels()，要注意前後順序<br />
+### 總和<br />
+summary()，適合用在factor而不是vector<br />
+## dataframe<br />
+### 建立<br />
+data.frame()<br />
+### 查看部分資料<br />
+head()<br />
+tail()<br />
+str()<br />
+### 選取<br />
+單欄dataframe_name$col_name<br />
+subset(dataframe_name, subset = some_condition)<br />
+### 排序<br />
+order()<br />
+dataframe_name[order(dataframe_name),]<br />
+## list<br />
