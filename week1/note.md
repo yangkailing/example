@@ -30,7 +30,7 @@ if knowing the order:[1]<br />
 choose more than one:[c(2,3,4)]equal to [2:4]<br />
 ### combine<br />
 c(vector1,vector2)<br />
-### give them names<br />
+### naming<br />
 names()<br />
 ex:poker_vector <- c(140, -50, 20, -120, 240)<br />
 ex:names(poker_vector) <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")<br />
@@ -93,9 +93,9 @@ my_list <- list(your_comp1, your_comp2)<br />
 names(my_list) <- c("name1", "name2")<br />
 <br />
 my_list <- list(name1 = your_comp1, name2 = your_comp2)<br />
-## choose<br />
+### choose<br />
 list_name[[2]][1]<br />
 list_name[["reviews"]]<br />
 list_name$reviews<br />
-## add new thing<br />
+### add new thing<br />
 ext_list <- c(my_list, my_name = anything)<br />
