@@ -78,3 +78,16 @@ subset(dataframe_name, subset = some_condition)<br />
 order()<br />
 dataframe_name[order(dataframe_name),]<br />
 ## list<br />
+可以儲存任何東西的列表<br />
+### 建立<br />
+list()<br />
+### 幫各項命名<br />
+my_list <- list(your_comp1, your_comp2)<br />
+names(my_list) <- c("name1", "name2")<br />
+my_list <- list(name1 = your_comp1, name2 = your_comp2)<br />
+## 選取<br />
+list_name[[2]][1]<br />
+list_name[["reviews"]]<br />
+list_name$reviews<br />
+## 增加新元素<br />
+ext_list <- c(my_list, my_name = my_val)<br />
