@@ -1,4 +1,7 @@
 # note
+## know the function<br/ >
+help()<br/ >
+args()<br/ >
 ## operator<br />
 ### numeric<br />
 plus：1+1<br />
@@ -22,6 +25,28 @@ if (condition1) {<br />
 } else {<br />
   expr4<br />
 }<br />
+### while<br/ >
+while (condition1) {<br />
+  expr1<br />
+  if (condition2) {<br />
+    break<br />
+  }<br />
+  if (condition3) {<br />
+    expr1<br />
+  } else {<br />
+    expr1<br />
+  }<br />
+### for<br/ >
+primes <- c(2, 3, 5, 7, 11, 13)<br />
+#### loop version 1<br />
+for (p in primes) {<br />
+  print(p)<br />
+}<br />
+#### loop version 2<br />
+for (i in 1:length(primes)) {<br />
+  print(primes[i])<br />
+}<br />
+<br />
 ## variable<br />
 x<-2<br />
 x<-string<br />
@@ -51,6 +76,8 @@ ex:days_vector<- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")<br />
 add all the numbers in the vector OR count something<br />
 ### mean()<br />
 average all the numbers in the vector<br />
+### separate strng and save<br/ >
+strsplit(rquote, split = "")[[1]]<br/ >
 <br />
 ## Matrix<br />
 ### construct a matrix<br />
