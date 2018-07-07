@@ -1,5 +1,5 @@
 # note
-## operator(numeric and logical)<br />
+## operator<br />
 ### numeric<br />
 plus：1+1<br />
 minus：2-1<br />
@@ -12,6 +12,16 @@ AND:&(only the first one &&)<br />
 OR:|(only the first one ||)<br />
 Watch out: 3 < x < 7 to check if x is between 3 and 7 will not work; you'll need 3 < x & x < 7 for that.<br />
 <br />
+### condition<br />
+if (condition1) {<br />
+  expr1<br />
+} else if (condition2) {<br />
+  expr2<br />
+} else if (condition3) {<br />
+  expr3<br />
+} else {<br />
+  expr4<br />
+}<br />
 ## variable<br />
 x<-2<br />
 x<-string<br />
