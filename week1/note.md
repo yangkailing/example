@@ -137,3 +137,16 @@ list_name[["reviews"]]<br />
 list_name$reviews<br />
 ### add new thing<br />
 ext_list <- c(my_list, my_name = anything)<br />
+<br/ >
+### write a function<br/ >
+my_fun <- function(arg1, arg2) {<br/ >
+  body<br/ >
+}<br/ >
+### using advanced function<br/ >
+install.packages()<br/ >
+#### Chunk 1<br/ >
+library(data.table)<br/ >
+require(rjson)<br/ >
+#### Chunk 2<br/ >
+library("data.table")<br/ >
+require(rjson)<br/ >
