@@ -162,6 +162,10 @@ arrange(desc(pop))<br />
 library(ggplot2) <br />
 ggplot(gapminder_1952, aes(x = pop, y = lifeExp, color = continent,size=gdpPercap)) +<br />
   geom_point()+<br />
+  geom_line()+<br />
+  geom_col()+<br />
+  geom_histogram(binwidth=5)<br />
+  geom_boxplot()<br />
   scale_x_log10()+<br />
   facet_wrap(~ continent)+<br />
   expand_limits(y=0)<br />
