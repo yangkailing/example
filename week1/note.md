@@ -150,3 +150,19 @@ require(rjson)<br/ >
 #### Chunk 2<br/ >
 library("data.table")<br/ >
 require(rjson)<br/ >
+## dataframe calculate<br/ >
+library(gapminder)<br/ >
+library(dplyr)<br/ >
+### choose and arrange<br/ >
+gapminder %>%<br/ >
+filter(year==1957)%>%<br/ >
+mutate(lifeExpMonths=12*lifeExp)%>%<br/ >
+arrange(desc(pop))<br/ >
+### visable <br/ >
+library(ggplot2) <br/ >
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp, color = continent,size=gdpPercap)) +<br/ >
+  geom_point()+<br/ >
+  scale_x_log10()+<br/ >
+  facet_wrap(~ continent)<br/ >
+### summarize<br/ >
+gapminder %>% summarize(medianLifeExp=median(lifeExp),maxGdpPercap=max(gdpPercap))<br/ >
