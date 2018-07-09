@@ -1,7 +1,7 @@
 # note
-## know the function<br/ >
-help()<br/ >
-args()<br/ >
+## know the function<br />
+help()<br />
+args()<br />
 ## operator<br />
 ### numeric<br />
 plus：1+1<br />
@@ -25,7 +25,7 @@ if (condition1) {<br />
 } else {<br />
   expr4<br />
 }<br />
-### while<br/ >
+### while<br />
 while (condition1) {<br />
   expr1<br />
   if (condition2) {<br />
@@ -36,7 +36,7 @@ while (condition1) {<br />
   } else {<br />
     expr1<br />
   }<br />
-### for<br/ >
+### for<br />
 primes <- c(2, 3, 5, 7, 11, 13)<br />
 #### loop version 1<br />
 for (p in primes) {<br />
@@ -76,8 +76,8 @@ ex:days_vector<- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")<br />
 add all the numbers in the vector OR count something<br />
 ### mean()<br />
 average all the numbers in the vector<br />
-### separate strng and save<br/ >
-strsplit(rquote, split = "")[[1]]<br/ >
+### separate string and save<br />
+strsplit(rquote, split = "")[[1]]<br />
 <br />
 ## Matrix<br />
 ### construct a matrix<br />
@@ -137,33 +137,33 @@ list_name[["reviews"]]<br />
 list_name$reviews<br />
 ### add new thing<br />
 ext_list <- c(my_list, my_name = anything)<br />
-<br/ >
-### write a function<br/ >
-my_fun <- function(arg1, arg2) {<br/ >
-  body<br/ >
-}<br/ >
-### using advanced function<br/ >
-install.packages()<br/ >
-#### Chunk 1<br/ >
-library(data.table)<br/ >
-require(rjson)<br/ >
-#### Chunk 2<br/ >
-library("data.table")<br/ >
-require(rjson)<br/ >
-## dataframe calculate<br/ >
-library(gapminder)<br/ >
-library(dplyr)<br/ >
-### choose and arrange<br/ >
-gapminder %>%<br/ >
-filter(year==1957)%>%<br/ >
-mutate(lifeExpMonths=12*lifeExp)%>%<br/ >
-arrange(desc(pop))<br/ >
-### visable <br/ >
-library(ggplot2) <br/ >
-ggplot(gapminder_1952, aes(x = pop, y = lifeExp, color = continent,size=gdpPercap)) +<br/ >
-  geom_point()+<br/ >
-  scale_x_log10()+<br/ >
-  facet_wrap(~ continent)+<br/ >
-  expand_limits(y=0)
-### summarize<br/ >
-gapminder %>% summarize(medianLifeExp=median(lifeExp),maxGdpPercap=max(gdpPercap))<br/ >
+<br />
+### write a function<br />
+my_fun <- function(arg1, arg2) {<br />
+  body<br />
+}<br />
+### using advanced function<br />
+install.packages()<br />
+#### Chunk 1<br />
+library(data.table)<br />
+require(rjson)<br />
+#### Chunk 2<br />
+library("data.table")<br />
+require(rjson)<br />
+## dataframe calculate<br />
+library(gapminder)<br />
+library(dplyr)<br />
+### choose and arrange<br />
+gapminder %>%<br />
+filter(year==1957)%>%<br />
+mutate(lifeExpMonths=12*lifeExp)%>%<br />
+arrange(desc(pop))<br />
+### visable <br />
+library(ggplot2) <br />
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp, color = continent,size=gdpPercap)) +<br />
+  geom_point()+<br />
+  scale_x_log10()+<br />
+  facet_wrap(~ continent)+<br />
+  expand_limits(y=0)<br />
+### summarize<br />
+gapminder %>% summarize(medianLifeExp=median(lifeExp),maxGdpPercap=max(gdpPercap))<br />
