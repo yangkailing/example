@@ -11,4 +11,7 @@
 4. 在該 repository 建立 week1 資料夾<br />
 5. 新增 hw1.Rmd<br />
 ### [week1](https://github.com/yangkailing/example/tree/master/week1)
+## At home<br />
+利用datacamp學習基礎的程式語言
+### [the note of course](https://github.com/yangkailing/example/blob/master/week1/note2.Rmd)
 # week_2
