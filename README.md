@@ -4,7 +4,7 @@
 系級：地理環境資源學系<br />
 這是我第一次學習R語言，希望在這六周結束後，我可以比現在更厲害<br />
 # week_1
-## [week1_note](https://yangkailing.github.io/example/week1/note2.html)
+## [week1](https://github.com/yangkailing/example/tree/master/week1)
 ### In class<br />
 1. 下載GitHub 及GitHub Desktop，並申請帳號<br />
 2. 建立本課程專用 repository<br />
@@ -13,7 +13,7 @@
 5. 新增 hw1.Rmd<br />
 ### At home<br />
 利用datacamp學習基礎的程式語言
-#### [the note of course](https://github.com/yangkailing/example/blob/master/week1/note2.Rmd)
+#### [the note of course](https://yangkailing.github.io/example/week1/note2.html)
 # week_2
 ## [week2](https://github.com/yangkailing/example/tree/master/week2)
 ### In class<br />
