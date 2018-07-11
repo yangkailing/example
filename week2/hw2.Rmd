@@ -1,0 +1,42 @@
+---
+title: "week2"
+author: "yang"
+date: "July 11, 2018"
+output: html_document
+---
+#hw2 visiable
+
+```{r }
+library(ggplot2)
+iris
+```
+
+#單變數 類別型
+```{r }
+ggplot(data = iris, aes(x = Species)) +
+geom_bar(fill = "lightblue", colour = "black")
+```
+
+# 單變數 連續型
+```{r }
+ggplot(data = iris, aes(x = Sepal.Length)) +
+geom_histogram()
+```
+
+#雙變數：連續 vs 連續
+```{r }
+ggplot(data = iris, aes(x = Sepal.Length, y=Sepal.Width)) +
+geom_point()
+```
+
+#雙變數：離散 vs 連續
+```{r }
+ggplot(data = iris, aes(x = Species,y=Sepal.Length)) +
+geom_boxplot()
+```
+
+#多變量
+```{r }
+ggplot(data = iris, aes(x=Sepal.Length,y = Sepal.Width,color=Species,size=Petal.Width)) +
+geom_point()
+```
