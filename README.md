@@ -26,4 +26,5 @@ step3 建立詞頻向量<br />
 step4 生成文字雲<br />
 [hw2 task2](https://yangkailing.github.io/example/week2/task2.html)<br />
 ### At home<br />
-
+繪製紫外線地圖(可是因為資料是晚上下載的，所以紫外線等於0)
+[UVA of taiwan](https://yangkailing.github.io/example/week2/map.html)
