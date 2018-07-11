@@ -17,7 +17,7 @@
 # week_2
 ## [week2](https://github.com/yangkailing/example/tree/master/week2)
 ### In class<br />
-1. 使用ggplot2進行資料視覺化
-[iris資料視覺化](https://yangkailing.github.io/example/week2/hw2.html)
+1. 使用ggplot2進行資料視覺化<br />
+[hw2_task1](https://yangkailing.github.io/example/week2/hw2.html)
 ### At home<br />
 
