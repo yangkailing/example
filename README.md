@@ -10,8 +10,13 @@
 3. 新增README.md，記錄學習檔案<br />
 4. 在該 repository 建立 week1 資料夾<br />
 5. 新增 hw1.Rmd<br />
-### [week1](https://github.com/yangkailing/example/tree/master/week1)
 ## At home<br />
 利用datacamp學習基礎的程式語言
+### [week1](https://github.com/yangkailing/example/tree/master/week1)
 ### [the note of course](https://github.com/yangkailing/example/blob/master/week1/note2.Rmd)
 # week_2
+## In class<br />
+1. 使用ggplot2進行資料視覺化
+[iris資料視覺化](https://yangkailing.github.io/example/week2/hw2.html)
+## At home<br />
+### [week2](https://github.com/yangkailing/example/tree/master/week2)
