@@ -1,3 +1,11 @@
+source('pttTestFunction.R')
+id = c(2226:2228)
+URL = paste0("https://www.ptt.cc/bbs/Lifeismoney/index", id, ".html")
+filename = paste0(id, ".txt")
+pttTestFunction(URL[1], filename[1])
+mapply(pttTestFunction, 
+       URL = URL, filename = filename)
+
 rm(list=ls(all.names = TRUE))
 library(NLP)
 library(tm)
@@ -17,8 +25,25 @@ docs <- tm_map(docs, toSpace, "※")
 docs <- tm_map(docs, toSpace, "◆")
 docs <- tm_map(docs, toSpace, "‧")
 docs <- tm_map(docs, toSpace, "的")
+docs <- tm_map(docs, toSpace, "推")
+docs <- tm_map(docs, toSpace, "了")
+docs <- tm_map(docs, toSpace, "有")
+docs <- tm_map(docs, toSpace, "噓")
+docs <- tm_map(docs, toSpace, "沒")
+docs <- tm_map(docs, toSpace, "在")
+docs <- tm_map(docs, toSpace, "會")
+docs <- tm_map(docs, toSpace, "也")
+docs <- tm_map(docs, toSpace, "嗎")
+docs <- tm_map(docs, toSpace, "都")
+docs <- tm_map(docs, toSpace, "不")
+docs <- tm_map(docs, toSpace, "就")
+docs <- tm_map(docs, toSpace, "好")
+docs <- tm_map(docs, toSpace, "喔")
 docs <- tm_map(docs, toSpace, "我")
 docs <- tm_map(docs, toSpace, "是")
+docs <- tm_map(docs, toSpace, "吧")
+docs <- tm_map(docs, toSpace, "還")
+docs <- tm_map(docs, toSpace, "可以")
 docs <- tm_map(docs, toSpace, "看板")
 docs <- tm_map(docs, toSpace, "作者")
 docs <- tm_map(docs, toSpace, "發信站")
@@ -31,7 +56,6 @@ docs <- tm_map(docs, removeNumbers)
 docs <- tm_map(docs, stripWhitespace)
 docs
 
-
 mixseg = worker()
 jieba_tokenizer=function(d){
   unlist(segment(d[[1]],mixseg))
@@ -41,7 +65,6 @@ freqFrame = as.data.frame(table(unlist(seg)))
 freqFrame = freqFrame[order(freqFrame$Freq,decreasing=TRUE), ]
 library(knitr)
 kable(head(freqFrame), format = "markdown")
-
 
 wordcloud(freqFrame$Var1,freqFrame$Freq,
           scale=c(5,0.1),min.freq=50,max.words=150,
