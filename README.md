@@ -17,7 +17,13 @@
 # week_2
 ## [week2](https://github.com/yangkailing/example/tree/master/week2)
 ### In class<br />
-1. 使用ggplot2進行資料視覺化<br />
-[hw2_task1](https://yangkailing.github.io/example/week2/hw2.html)
+使用ggplot2進行資料視覺化<br />
+[hw2_task1](https://yangkailing.github.io/example/week2/hw2.html)<br />
+網路爬蟲製作文字雲<br />
+step1 蒐集文本<br />
+step2 文字清洗<br />
+step3 建立詞頻向量<br />
+step4 生成文字雲<br />
+[hw2 task2](https://yangkailing.github.io/example/week2/task2.html)<br />
 ### At home<br />
 
