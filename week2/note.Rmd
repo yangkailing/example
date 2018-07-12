@@ -1,0 +1,16 @@
+---
+title: "note"
+author: "yang"
+date: "July 12, 2018"
+output: html_document
+---
+
+# dataframe
+## Check the levels of gender
+```{r comment=""}
+comics$gender
+```
+## Create a 2-way contingency table
+```{r}
+table(comics$align,comics$gender)
+```
