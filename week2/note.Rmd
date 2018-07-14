@@ -6,11 +6,75 @@ output: html_document
 ---
 
 # dataframe
-## Check the levels of gender
-```{r comment=""}
-comics$gender
+## Check the levels 
+```{r error = TRUE, results = "hide", message=FALSE}
+levels(comics$align)
+levels(comics$gender)
+```
+## Remove level
+```{r error = TRUE,results = "hide"}
+comics <- comics %>%
+  filter(align != "Reformed Criminals") %>% 
+  droplevels() #把align == "Reformed Criminals"的消除掉
 ```
 ## Create a 2-way contingency table
-```{r}
+```{r error = TRUE,results = "hide"}
 table(comics$align,comics$gender)
+options(scipen = 999, digits = 3) # Print fewer digits
+prop.table(tab)     # Joint proportions
+prop.table(tab, 2)  # Conditional on columns，1 us by row
+```
+## bar plot of side by side
+```{r error = TRUE,results = "hide"}
+ggplot(comics, aes(x = gender, fill = align)) + 
+  geom_bar(position = "dodge") +# Create side-by-side barchart
+  theme(axis.text.x = element_text(angle = 90))#x軸標註轉90度
+```
+## bar plot of proportion
+```{r error = TRUE,results = "hide"}
+# Plot proportion of gender, conditional on align
+ggplot(comics, aes(x = gender, fill =align)) + 
+  geom_bar(position = "fill") +
+  ylab("proportion")
+```
+## box plots 
+```{r error = TRUE,results = "hide"}
+ggplot(common_cyl, aes(x = as.factor(ncyl), y = city_mpg)) +
+  geom_boxplot()
+```
+##  density plots 
+```{r error = TRUE,results = "hide"}
+ggplot(common_cyl, aes(x = city_mpg, fill = as.factor(ncyl))) +
+  geom_density(alpha = .3)+ #透明度
+  xlim(c(90, 550)) #x座標範圍
+```
+## compare of boxplot and density plot
+```{r error = TRUE,results = "hide"}
+#boxplot
+cars %>%
+  ggplot(aes(x=1,y=city_mpg)) +
+  geom_boxplot()
+#density plot
+cars %>%
+  ggplot(aes(x=city_mpg)) +
+  geom_density()
+```
+## histogram
+```{r error = TRUE,results = "hide"}
+common_cyl %>%
+  ggplot(aes(x = hwy_mpg)) +
+  geom_histogram(binwidth =3) +# Create histogram with binwidth of 3
+  facet_grid(ncyl ~ suv) +# Facet by using suv and ncyl
+  ggtitle("ncyl+suv")
+```
+#statistic
+```{r}
+library(gapminder)
+library(dplyr)
+gapminder %>%
+  filter(year==2007)%>%
+  group_by(continent) %>%
+  summarize(sd(lifeExp),#標準差
+            IQR(lifeExp),#四分位距
+            n())#數量(不用參數)
 ```
