@@ -1,0 +1,106 @@
+---
+title: 'report:Titanic: 2nd degree families and majority voting'
+author: "yang"
+date: "July 18, 2018"
+output: html_document
+---
+
+#prepare
+```{r results=FALSE}
+library(Hmisc)
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(caret)
+library(randomForest)
+library(gridExtra)
+library(ROCR)
+library(corrplot)
+```
+```{r}
+#read csv
+train <- read.csv("train.csv", stringsAsFactors = F, na.strings = c("NA", ""))
+test <- read.csv("test.csv", stringsAsFactors = F, na.strings = c("NA", ""))
+#merging test and train
+test$Survived <- NA
+all <- rbind(train, test)
+#轉換資料
+all$Sex <- as.factor(all$Sex)
+all$Survived <- as.factor(all$Survived)
+all$Pclass <- as.ordered(all$Pclass)
+```
+#觀察資料看生存及死亡人數
+```{r}
+ggplot(all[!is.na(all$Survived),], aes(x = Survived, fill = Survived)) +
+  geom_bar(stat='count') +
+  labs(x = 'How many people died and survived on the Titanic?') +
+        geom_label(stat='count',aes(label=..count..), size=7) +#座標軸
+        theme_grey(base_size = 18)#字的大小
+```
+# 將男女分開看存活數
+```{r}
+p1 <- ggplot(all, aes(x = Sex, fill = Sex)) +
+  geom_bar(stat='count', position='dodge') + theme_grey() +
+  labs(x = 'All data') +
+        geom_label(stat='count', aes(label=..count..)) +
+        scale_fill_manual("legend", values = c("female" = "pink", "male" = "green"))
+p2 <- ggplot(all[!is.na(all$Survived),], aes(x = Sex, fill = Survived)) +
+  geom_bar(stat='count', position='dodge') + theme_grey() +
+  labs(x = 'Training data only') +
+        geom_label(stat='count', aes(label=..count..))
+
+grid.arrange(p1,p2, nrow=1)
+
+```
+#以身分階級和性別綜合來看存活數
+```{r}
+p3 <- ggplot(all, aes(x = Pclass, fill = Pclass)) +
+  geom_bar(stat='count', position='dodge') +
+  labs(x = 'Pclass, All data') + geom_label(stat='count', aes(label=..count..)) +
+   theme(legend.position="none") + theme_grey()     
+p4 <- ggplot(all[!is.na(all$Survived),], aes(x = Pclass, fill = Survived)) +
+  geom_bar(stat='count', position='dodge') + labs(x = 'Training data only') +
+        theme(legend.position="none") + theme_grey()
+p5 <- ggplot(all[!is.na(all$Survived),], aes(x = Pclass, fill = Survived)) +
+  geom_bar(stat='count', position='stack') +
+  labs(x = 'Training data only', y= "Count") + facet_grid(.~Sex) +
+        theme(legend.position="none") + theme_grey()
+p6 <- ggplot(all[!is.na(all$Survived),], aes(x = Pclass, fill = Survived)) +
+  geom_bar(stat='count', position='fill') +
+  labs(x = 'Training data only', y= "Percent") + facet_grid(.~Sex) +
+        theme(legend.position="none") + theme_grey()
+
+grid.arrange(p3, p4, p5, p6, ncol=2)
+```
+# 探討家族與存活
+```{r}
+#Extracting Title and Surname from Name
+all$Surname <- sapply(all$Name, function(x) {strsplit(x, split='[,.]')[[1]][1]})
+ #correcting some surnames that also include a maiden name
+all$Surname <- sapply(all$Surname, function(x) {strsplit(x, split='[-]')[[1]][1]})
+all$Title <- sapply(all$Name, function(x) {strsplit(x, split='[,.]')[[1]][2]})
+all$Title <- sub(' ', '', all$Title) #removing spaces before title
+all$Title[all$Title %in% c("Mlle", "Ms")] <- "Miss"
+all$Title[all$Title== "Mme"] <- "Mrs"
+all$Title[!(all$Title %in% c('Master', 'Miss', 'Mr', 'Mrs'))] <- "Rare Title"
+all$Title <- as.factor(all$Title)
+kable(table(all$Sex, all$Title))
+```
+# 劃出已婚未婚男女存活率
+可發現已婚男性存活數很低，可能與社會風氣有關
+```{r}
+ggplot(all[!is.na(all$Survived),], aes(x = Title, fill = Survived)) +
+  geom_bar(stat='count', position='stack') +
+  labs(x = 'Title') +theme_grey()
+```
+# 家庭大小與存活率的關係
+由圖中可發現，當家庭數為2、3、4人時較容易活下來<br />
+可能與救生艇座位數不足有關
+```{r}
+#creating family size variable (Fsize)
+all$Fsize <- all$SibSp+all$Parch +1
+ggplot(all[!is.na(all$Survived),], aes(x = Fsize, fill = Survived)) +
+  geom_bar(stat='count', position='dodge') +
+  scale_x_continuous(breaks=c(1:11)) +
+  labs(x = 'Family Size') + theme_grey()
+```

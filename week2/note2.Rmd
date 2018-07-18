@@ -1,0 +1,61 @@
+---
+title: "note2"
+author: "yang"
+date: "July 15, 2018"
+output: html_document
+---
+# Print bmi to the console
+```{r error = TRUE,results = "hide"}
+print(bmi)
+```
+# Check the class of bmi
+```{r error = TRUE,results = "hide"}
+class(bmi)
+```
+# Check the dimensions of bmi(row col)
+```{r error = TRUE,results = "hide"}
+dim(bmi)
+```
+# View the column names of bmi
+```{r error = TRUE,results = "hide"}
+names(bmi)
+```
+# Check the structure of bmi
+```{r error = TRUE,results = "hide"}
+str(bmi)
+```
+# Check the structure of bmi by the dplyr way
+```{r error = TRUE,results = "hide"}
+library(dplyr)
+glimpse(bmi)
+```
+# View a summary of bmi
+```{r error = TRUE,results = "hide"}
+summary(bmi)
+```
+# View the first 15 rows(ordinary is 6)
+```{r error = TRUE,results = "hide"}
+head(bmi,15)
+```
+# View the last 10 rows(ordinary is 6)
+```{r error = TRUE,results = "hide"}
+tail(bmi,10)
+```
+# Histogram of BMIs from 2008
+```{r error = TRUE,results = "hide"}
+hist(bmi$Y2008)
+```
+# Scatter plot comparing BMIs from 1980 to those from 2008
+```{r error = TRUE,results = "hide"}
+plot(bmi$Y1980,bmi$Y2008)
+```
+# Turn wide data long : gather() 
+```{r error = TRUE,results = "hide"}
+#gather(wide_df, my_key, my_val, -col)
+bmi_long <- gather(bmi, year,bmi_val, -Country)
+```
+# Turn long data wide: spread()
+```{r error = TRUE,results = "hide"}
+#spread(long_df, my_key, my_val)
+bmi_wide <- spread(bmi_long, year, bmi_val)
+```
