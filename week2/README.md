@@ -14,3 +14,4 @@ step4 生成文字雲<br />
 ## at home<br />
 繪製紫外線地圖(可是因為資料是晚上下載的，所以紫外線等於0)<br />
 [UVA of taiwan](https://yangkailing.github.io/example/week2/map.html)
+### [the note of plot](https://yangkailing.github.io/example/week2/note.html)
