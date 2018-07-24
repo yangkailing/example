@@ -59,3 +59,44 @@ bmi_long <- gather(bmi, year,bmi_val, -Country)
 #spread(long_df, my_key, my_val)
 bmi_wide <- spread(bmi_long, year, bmi_val)
 ```
+# Apply separate() to bmi_cc:divide one col to two
+```{r error = TRUE,results = "hide"}
+bmi_cc_clean <- separate(bmi_cc, col = Country_ISO, into = c("Country", "ISO"), sep = "/")
+```
+# Apply unite() to bmi_cc_clean
+```{r error = TRUE,results = "hide"}
+bmi_cc <- unite(bmi_cc_clean, Country_ISO, Country, ISO, sep = "-")
+```
+# Convert characters to numerics
+```{r error = TRUE,results = "hide"}
+weather6 <- mutate_at(weather5, vars(CloudCover:WindDirDegrees), funs(as.numeric))
+```
+#string manipulation
+```{r}
+library(stringr)
+# Trim all leading and trailing whitespace
+str_trim(c("   Filip ", "Nick  ", " Jonathan"))
+# Pad these strings with leading zeros
+str_pad(c("23485W", "8823453Q", "994Z"),width=9,side="left",pad=0)
+# Make states all uppercase 
+toupper("states")
+# Make to lowercase 
+tolower("STATES")
+#detect
+str_detect(c("banana", "kiwi"), "a")
+#replace
+str_replace(c("banana", "kiwi"), "a", "o")
+```
+```{r error = TRUE,results = "hide"}
+# Replace all empty strings in status with NA
+social_df$status[social_df$status == ""] <- NA
+# Use complete.cases() to see which rows have no missing values
+complete.cases(social_df) 
+# Use na.omit() to remove all rows with any missing values
+na.omit(social_df)
+```
+# Load the dplyr package
+```{r}
+library(dplyr)
+library(hflights)
+```

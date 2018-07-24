@@ -193,6 +193,64 @@ $(document).ready(function () {
 <pre class="r"><code>plot(bmi$Y1980,bmi$Y2008)</code></pre>
 <pre><code>## Error in plot(bmi$Y1980, bmi$Y2008): object 'bmi' not found</code></pre>
 </div>
+<div id="turn-wide-data-long-gather" class="section level1">
+<h1>Turn wide data long : gather()</h1>
+<pre class="r"><code>#gather(wide_df, my_key, my_val, -col)
+bmi_long &lt;- gather(bmi, year,bmi_val, -Country)</code></pre>
+<pre><code>## Error in gather(bmi, year, bmi_val, -Country): could not find function &quot;gather&quot;</code></pre>
+</div>
+<div id="turn-long-data-wide-spread" class="section level1">
+<h1>Turn long data wide: spread()</h1>
+<pre class="r"><code>#spread(long_df, my_key, my_val)
+bmi_wide &lt;- spread(bmi_long, year, bmi_val)</code></pre>
+<pre><code>## Error in spread(bmi_long, year, bmi_val): could not find function &quot;spread&quot;</code></pre>
+</div>
+<div id="apply-separate-to-bmi_ccdivide-one-col-to-two" class="section level1">
+<h1>Apply separate() to bmi_cc:divide one col to two</h1>
+<pre class="r"><code>bmi_cc_clean &lt;- separate(bmi_cc, col = Country_ISO, into = c(&quot;Country&quot;, &quot;ISO&quot;), sep = &quot;/&quot;)</code></pre>
+<pre><code>## Error in separate(bmi_cc, col = Country_ISO, into = c(&quot;Country&quot;, &quot;ISO&quot;), : could not find function &quot;separate&quot;</code></pre>
+</div>
+<div id="apply-unite-to-bmi_cc_clean" class="section level1">
+<h1>Apply unite() to bmi_cc_clean</h1>
+<pre class="r"><code>bmi_cc &lt;- unite(bmi_cc_clean, Country_ISO, Country, ISO, sep = &quot;-&quot;)</code></pre>
+<pre><code>## Error in unite(bmi_cc_clean, Country_ISO, Country, ISO, sep = &quot;-&quot;): could not find function &quot;unite&quot;</code></pre>
+</div>
+<div id="convert-characters-to-numerics" class="section level1">
+<h1>Convert characters to numerics</h1>
+<pre class="r"><code>weather6 &lt;- mutate_at(weather5, vars(CloudCover:WindDirDegrees), funs(as.numeric))</code></pre>
+<pre><code>## Error in tbl_vars(tbl): object 'weather5' not found</code></pre>
+</div>
+<div id="string-manipulation" class="section level1">
+<h1>string manipulation</h1>
+<pre class="r"><code>library(stringr)
+# Trim all leading and trailing whitespace
+str_trim(c(&quot;   Filip &quot;, &quot;Nick  &quot;, &quot; Jonathan&quot;))</code></pre>
+<pre><code>## [1] &quot;Filip&quot;    &quot;Nick&quot;     &quot;Jonathan&quot;</code></pre>
+<pre class="r"><code># Pad these strings with leading zeros
+str_pad(c(&quot;23485W&quot;, &quot;8823453Q&quot;, &quot;994Z&quot;),width=9,side=&quot;left&quot;,pad=0)</code></pre>
+<pre><code>## [1] &quot;00023485W&quot; &quot;08823453Q&quot; &quot;00000994Z&quot;</code></pre>
+<pre class="r"><code># Make states all uppercase 
+toupper(&quot;states&quot;)</code></pre>
+<pre><code>## [1] &quot;STATES&quot;</code></pre>
+<pre class="r"><code># Make to lowercase 
+tolower(&quot;STATES&quot;)</code></pre>
+<pre><code>## [1] &quot;states&quot;</code></pre>
+<pre class="r"><code>#detect
+str_detect(c(&quot;banana&quot;, &quot;kiwi&quot;), &quot;a&quot;)</code></pre>
+<pre><code>## [1]  TRUE FALSE</code></pre>
+<pre class="r"><code>#replace
+str_replace(c(&quot;banana&quot;, &quot;kiwi&quot;), &quot;a&quot;, &quot;o&quot;)</code></pre>
+<pre><code>## [1] &quot;bonana&quot; &quot;kiwi&quot;</code></pre>
+<pre class="r"><code># Replace all empty strings in status with NA
+social_df$status[social_df$status == &quot;&quot;] &lt;- NA</code></pre>
+<pre><code>## Error in social_df$status[social_df$status == &quot;&quot;] &lt;- NA: object 'social_df' not found</code></pre>
+<pre class="r"><code># Use complete.cases() to see which rows have no missing values
+complete.cases(social_df) </code></pre>
+<pre><code>## Error in complete.cases(social_df): object 'social_df' not found</code></pre>
+<pre class="r"><code># Use na.omit() to remove all rows with any missing values
+na.omit(social_df)</code></pre>
+<pre><code>## Error in na.omit(social_df): object 'social_df' not found</code></pre>
+</div>
 
 
 
