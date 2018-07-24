@@ -28,4 +28,12 @@ step4 生成文字雲<br />
 ### At home<br />
 繪製紫外線地圖(可是因為資料是晚上下載的，所以紫外線等於0)<br />
 [UVA of taiwan](https://yangkailing.github.io/example/week2/map.html)
-
+#### [the note of plot](https://yangkailing.github.io/example/week2/note.html)
+# week_3
+## [week3](https://github.com/yangkailing/example/tree/master/week3)
+閱讀Kaggle Script，使用RMD來製作EDA簡報<br />
+[lab1](https://yangkailing.github.io/example/week3/week3_lab1.html)<br />
+串聯TF-IDF, PCA, Kmeans<br />
+功用:TF-IDF去除中央空調、PCA降維、Kmeans分組
+[lab2](https://yangkailing.github.io/example/week3/week3_lab2.html)
+#### [the note of data manipulation](https://yangkailing.github.io/example/week2/note2.html)
