@@ -251,6 +251,188 @@ complete.cases(social_df) </code></pre>
 na.omit(social_df)</code></pre>
 <pre><code>## Error in na.omit(social_df): object 'social_df' not found</code></pre>
 </div>
+<div id="load-the-dplyr-package" class="section level1">
+<h1>Load the dplyr package</h1>
+<pre class="r"><code>library(dplyr)
+library(hflights)
+head(hflights)</code></pre>
+<pre><code>##      Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier
+## 5424 2011     1          1         6    1400    1500            AA
+## 5425 2011     1          2         7    1401    1501            AA
+## 5426 2011     1          3         1    1352    1502            AA
+## 5427 2011     1          4         2    1403    1513            AA
+## 5428 2011     1          5         3    1405    1507            AA
+## 5429 2011     1          6         4    1359    1503            AA
+##      FlightNum TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin
+## 5424       428  N576AA                60      40      -10        0    IAH
+## 5425       428  N557AA                60      45       -9        1    IAH
+## 5426       428  N541AA                70      48       -8       -8    IAH
+## 5427       428  N403AA                70      39        3        3    IAH
+## 5428       428  N492AA                62      44       -3        5    IAH
+## 5429       428  N262AA                64      45       -7       -1    IAH
+##      Dest Distance TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 5424  DFW      224      7      13         0                         0
+## 5425  DFW      224      6       9         0                         0
+## 5426  DFW      224      5      17         0                         0
+## 5427  DFW      224      9      22         0                         0
+## 5428  DFW      224      9       9         0                         0
+## 5429  DFW      224      6      13         0                         0</code></pre>
+</div>
+<div id="convert-the-hflights-data.frame-into-a-hflights-tbl" class="section level1">
+<h1>Convert the hflights data.frame into a hflights tbl</h1>
+<pre class="r"><code>hflights&lt;-tbl_df(hflights)
+hflights</code></pre>
+<pre><code>## # A tibble: 227,496 x 21
+##     Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier
+##  * &lt;int&gt; &lt;int&gt;      &lt;int&gt;     &lt;int&gt;   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;        
+##  1  2011     1          1         6    1400    1500 AA           
+##  2  2011     1          2         7    1401    1501 AA           
+##  3  2011     1          3         1    1352    1502 AA           
+##  4  2011     1          4         2    1403    1513 AA           
+##  5  2011     1          5         3    1405    1507 AA           
+##  6  2011     1          6         4    1359    1503 AA           
+##  7  2011     1          7         5    1359    1509 AA           
+##  8  2011     1          8         6    1355    1454 AA           
+##  9  2011     1          9         7    1443    1554 AA           
+## 10  2011     1         10         1    1443    1553 AA           
+## # ... with 227,486 more rows, and 14 more variables: FlightNum &lt;int&gt;,
+## #   TailNum &lt;chr&gt;, ActualElapsedTime &lt;int&gt;, AirTime &lt;int&gt;, ArrDelay &lt;int&gt;,
+## #   DepDelay &lt;int&gt;, Origin &lt;chr&gt;, Dest &lt;chr&gt;, Distance &lt;int&gt;,
+## #   TaxiIn &lt;int&gt;, TaxiOut &lt;int&gt;, Cancelled &lt;int&gt;, CancellationCode &lt;chr&gt;,
+## #   Diverted &lt;int&gt;</code></pre>
+</div>
+<div id="glimpse-at-hflights" class="section level1">
+<h1>Glimpse at hflights</h1>
+<pre class="r"><code>glimpse(hflights)</code></pre>
+<pre><code>## Observations: 227,496
+## Variables: 21
+## $ Year              &lt;int&gt; 2011, 2011, 2011, 2011, 2011, 2011, 2011, 20...
+## $ Month             &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
+## $ DayofMonth        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1...
+## $ DayOfWeek         &lt;int&gt; 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6,...
+## $ DepTime           &lt;int&gt; 1400, 1401, 1352, 1403, 1405, 1359, 1359, 13...
+## $ ArrTime           &lt;int&gt; 1500, 1501, 1502, 1513, 1507, 1503, 1509, 14...
+## $ UniqueCarrier     &lt;chr&gt; &quot;AA&quot;, &quot;AA&quot;, &quot;AA&quot;, &quot;AA&quot;, &quot;AA&quot;, &quot;AA&quot;, &quot;AA&quot;, &quot;A...
+## $ FlightNum         &lt;int&gt; 428, 428, 428, 428, 428, 428, 428, 428, 428,...
+## $ TailNum           &lt;chr&gt; &quot;N576AA&quot;, &quot;N557AA&quot;, &quot;N541AA&quot;, &quot;N403AA&quot;, &quot;N49...
+## $ ActualElapsedTime &lt;int&gt; 60, 60, 70, 70, 62, 64, 70, 59, 71, 70, 70, ...
+## $ AirTime           &lt;int&gt; 40, 45, 48, 39, 44, 45, 43, 40, 41, 45, 42, ...
+## $ ArrDelay          &lt;int&gt; -10, -9, -8, 3, -3, -7, -1, -16, 44, 43, 29,...
+## $ DepDelay          &lt;int&gt; 0, 1, -8, 3, 5, -1, -1, -5, 43, 43, 29, 19, ...
+## $ Origin            &lt;chr&gt; &quot;IAH&quot;, &quot;IAH&quot;, &quot;IAH&quot;, &quot;IAH&quot;, &quot;IAH&quot;, &quot;IAH&quot;, &quot;I...
+## $ Dest              &lt;chr&gt; &quot;DFW&quot;, &quot;DFW&quot;, &quot;DFW&quot;, &quot;DFW&quot;, &quot;DFW&quot;, &quot;DFW&quot;, &quot;D...
+## $ Distance          &lt;int&gt; 224, 224, 224, 224, 224, 224, 224, 224, 224,...
+## $ TaxiIn            &lt;int&gt; 7, 6, 5, 9, 9, 6, 12, 7, 8, 6, 8, 4, 6, 5, 6...
+## $ TaxiOut           &lt;int&gt; 13, 9, 17, 22, 9, 13, 15, 12, 22, 19, 20, 11...
+## $ Cancelled         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
+## $ CancellationCode  &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, ...
+## $ Diverted          &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...</code></pre>
+</div>
+<div id="print-out-the-columns-origin-up-to-cancelled-of-hflights" class="section level1">
+<h1>Print out the columns Origin up to Cancelled of hflights</h1>
+<p>select() does not change the data frame it is called on; you have to explicitly assign the result of select() to a variable to store the result.</p>
+<pre class="r"><code>select(hflights ,Origin:Cancelled)</code></pre>
+<pre><code>## # A tibble: 227,496 x 6
+##    Origin Dest  Distance TaxiIn TaxiOut Cancelled
+##  * &lt;chr&gt;  &lt;chr&gt;    &lt;int&gt;  &lt;int&gt;   &lt;int&gt;     &lt;int&gt;
+##  1 IAH    DFW        224      7      13         0
+##  2 IAH    DFW        224      6       9         0
+##  3 IAH    DFW        224      5      17         0
+##  4 IAH    DFW        224      9      22         0
+##  5 IAH    DFW        224      9       9         0
+##  6 IAH    DFW        224      6      13         0
+##  7 IAH    DFW        224     12      15         0
+##  8 IAH    DFW        224      7      12         0
+##  9 IAH    DFW        224      8      22         0
+## 10 IAH    DFW        224      6      19         0
+## # ... with 227,486 more rows</code></pre>
+</div>
+<div id="add-the-new-variable-actualgroundtime-to-a-copy-of-hflights-and-save-the-result-as-g1." class="section level1">
+<h1>Add the new variable ActualGroundTime to a copy of hflights and save the result as g1.</h1>
+<pre class="r"><code>g1&lt;-mutate(hflights,TotalTaxi=TaxiIn + TaxiOut,ActualGroundTime=ActualElapsedTime - AirTime,Diff=TotalTaxi-ActualGroundTime)
+head(g1)</code></pre>
+<pre><code>## # A tibble: 6 x 24
+##    Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+##   &lt;int&gt; &lt;int&gt;      &lt;int&gt;     &lt;int&gt;   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;             &lt;int&gt;
+## 1  2011     1          1         6    1400    1500 AA                  428
+## 2  2011     1          2         7    1401    1501 AA                  428
+## 3  2011     1          3         1    1352    1502 AA                  428
+## 4  2011     1          4         2    1403    1513 AA                  428
+## 5  2011     1          5         3    1405    1507 AA                  428
+## 6  2011     1          6         4    1359    1503 AA                  428
+## # ... with 16 more variables: TailNum &lt;chr&gt;, ActualElapsedTime &lt;int&gt;,
+## #   AirTime &lt;int&gt;, ArrDelay &lt;int&gt;, DepDelay &lt;int&gt;, Origin &lt;chr&gt;,
+## #   Dest &lt;chr&gt;, Distance &lt;int&gt;, TaxiIn &lt;int&gt;, TaxiOut &lt;int&gt;,
+## #   Cancelled &lt;int&gt;, CancellationCode &lt;chr&gt;, Diverted &lt;int&gt;,
+## #   TotalTaxi &lt;int&gt;, ActualGroundTime &lt;int&gt;, Diff &lt;int&gt;</code></pre>
+</div>
+<div id="filter" class="section level1">
+<h1>filter</h1>
+<pre class="r"><code>dtc &lt;- filter(hflights, Cancelled == 1, !is.na(DepDelay))</code></pre>
+</div>
+<div id="arrange" class="section level1">
+<h1>arrange</h1>
+<pre class="r"><code>arrange(dtc,UniqueCarrier,DepDelay)</code></pre>
+<pre><code>## # A tibble: 68 x 21
+##     Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier
+##    &lt;int&gt; &lt;int&gt;      &lt;int&gt;     &lt;int&gt;   &lt;int&gt;   &lt;int&gt; &lt;chr&gt;        
+##  1  2011     8         18         4    1808      NA AA           
+##  2  2011     2          4         5    1638      NA AA           
+##  3  2011     7         29         5    1424      NA CO           
+##  4  2011     1         26         3    1703      NA CO           
+##  5  2011     8         11         4    1320      NA CO           
+##  6  2011     7         25         1    1654      NA CO           
+##  7  2011     1         26         3    1926      NA CO           
+##  8  2011     3         31         4    1016      NA CO           
+##  9  2011     2          8         2    1057      NA CO           
+## 10  2011     4          4         1    1632      NA DL           
+## # ... with 58 more rows, and 14 more variables: FlightNum &lt;int&gt;,
+## #   TailNum &lt;chr&gt;, ActualElapsedTime &lt;int&gt;, AirTime &lt;int&gt;, ArrDelay &lt;int&gt;,
+## #   DepDelay &lt;int&gt;, Origin &lt;chr&gt;, Dest &lt;chr&gt;, Distance &lt;int&gt;,
+## #   TaxiIn &lt;int&gt;, TaxiOut &lt;int&gt;, Cancelled &lt;int&gt;, CancellationCode &lt;chr&gt;,
+## #   Diverted &lt;int&gt;</code></pre>
+</div>
+<div id="calculate" class="section level1">
+<h1>calculate</h1>
+<p>first(x) - The first element of vector x.<br /> last(x) - The last element of vector x.<br /> nth(x, n) - The nth element of vector x.<br /> n() - The number of rows in the data.frame or group of observations that summarise() describes.<br /> n_distinct(x) - The number of unique values in vector x.<br /></p>
+<pre class="r"><code>summarise(hflights,n_flights=n(),n_canc=sum(Cancelled),avg_delay=mean(ArrDelay,na.rm=TRUE))</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   n_flights n_canc avg_delay
+##       &lt;int&gt;  &lt;int&gt;     &lt;dbl&gt;
+## 1    227496   2973      7.09</code></pre>
+</div>
+<div id="datatable" class="section level1">
+<h1>datatable</h1>
+<pre class="r"><code>library(data.table)</code></pre>
+<pre><code>## 
+## Attaching package: 'data.table'</code></pre>
+<pre><code>## The following objects are masked from 'package:dplyr':
+## 
+##     between, first, last</code></pre>
+<pre class="r"><code>hflights2 &lt;- as.data.table(hflights)
+head(hflights2)</code></pre>
+<pre><code>##    Year Month DayofMonth DayOfWeek DepTime ArrTime UniqueCarrier FlightNum
+## 1: 2011     1          1         6    1400    1500            AA       428
+## 2: 2011     1          2         7    1401    1501            AA       428
+## 3: 2011     1          3         1    1352    1502            AA       428
+## 4: 2011     1          4         2    1403    1513            AA       428
+## 5: 2011     1          5         3    1405    1507            AA       428
+## 6: 2011     1          6         4    1359    1503            AA       428
+##    TailNum ActualElapsedTime AirTime ArrDelay DepDelay Origin Dest
+## 1:  N576AA                60      40      -10        0    IAH  DFW
+## 2:  N557AA                60      45       -9        1    IAH  DFW
+## 3:  N541AA                70      48       -8       -8    IAH  DFW
+## 4:  N403AA                70      39        3        3    IAH  DFW
+## 5:  N492AA                62      44       -3        5    IAH  DFW
+## 6:  N262AA                64      45       -7       -1    IAH  DFW
+##    Distance TaxiIn TaxiOut Cancelled CancellationCode Diverted
+## 1:      224      7      13         0                         0
+## 2:      224      6       9         0                         0
+## 3:      224      5      17         0                         0
+## 4:      224      9      22         0                         0
+## 5:      224      9       9         0                         0
+## 6:      224      6      13         0                         0</code></pre>
+</div>
 
 
 

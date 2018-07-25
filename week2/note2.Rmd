@@ -95,8 +95,82 @@ complete.cases(social_df)
 # Use na.omit() to remove all rows with any missing values
 na.omit(social_df)
 ```
+
+
 # Load the dplyr package
 ```{r}
 library(dplyr)
 library(hflights)
+head(hflights)
 ```
+# Convert the hflights data.frame into a hflights tbl
+```{r}
+hflights<-tbl_df(hflights)
+hflights
+```
+# Glimpse at hflights
+```{r}
+glimpse(hflights)
+```
+# Print out the columns Origin up to Cancelled of hflights
+select() does not change the data frame it is called on; you have to explicitly assign the result of select() to a variable to store the result.
+```{r}
+select(hflights ,Origin:Cancelled)
+```
+# Add the new variable ActualGroundTime to a copy of hflights and save the result as g1.
+```{r}
+g1<-mutate(hflights,TotalTaxi=TaxiIn + TaxiOut,ActualGroundTime=ActualElapsedTime - AirTime,Diff=TotalTaxi-ActualGroundTime)
+head(g1)
+```
+#filter
+```{r}
+dtc <- filter(hflights, Cancelled == 1, !is.na(DepDelay))
+```
+#arrange
+```{r}
+arrange(dtc,UniqueCarrier,DepDelay)
+```
+#calculate
+first(x) - The first element of vector x.<br />
+last(x) - The last element of vector x.<br />
+nth(x, n) - The nth element of vector x.<br />
+n() - The number of rows in the data.frame or group of observations that summarise() describes.<br />
+n_distinct(x) - The number of unique values in vector x.<br />
+```{r}
+summarise(hflights,n_flights=n(),n_canc=sum(Cancelled),avg_delay=mean(ArrDelay,na.rm=TRUE))
+```
+#datatable
+```{r}
+library(data.table)
+hflights2 <- as.data.table(hflights)
+head(hflights2)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
