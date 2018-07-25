@@ -38,4 +38,9 @@ step4 生成文字雲<br />
 [lab2](https://yangkailing.github.io/example/week3/week3_lab2.html)
 #### [the note of data manipulation](https://yangkailing.github.io/example/week2/note2.html)
 # week_4
-[Correlation and Regression]()
+## [week4](https://github.com/yangkailing/example/tree/master/week4)
+【上午】對資料進行更深度的 EDA<br />
+【下午】提出問題，透過迴歸分析獲取可能答案<br />
+將以上任務利用 Rmd 製做一份分析報告，上傳 Rmd 與 html 至 github<br />
+[EDA](https://yangkailing.github.io/example/week4/lab1.html)
+####  [Correlation and Regression]()
