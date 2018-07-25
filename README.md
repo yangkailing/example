@@ -37,3 +37,5 @@ step4 生成文字雲<br />
 功用:TF-IDF去除中央空調、PCA降維、Kmeans分組<br />
 [lab2](https://yangkailing.github.io/example/week3/week3_lab2.html)
 #### [the note of data manipulation](https://yangkailing.github.io/example/week2/note2.html)
+# week_4
+[Correlation and Regression]()
