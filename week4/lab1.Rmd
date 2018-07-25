@@ -1,0 +1,305 @@
+---
+title: "week4_lab1"
+author: "yang"
+date: "July 25, 2018"
+output: html_document
+---
+#分析前準備
+## 讀入資料
+```{r cache=TRUE, warning=FALSE}
+dta <- read.table(file = "TIMSS2011TW.txt", header = TRUE)
+```
+
+## 查看資料結構與基本統計
+該資料包含4467位學生在數學及科學方面的成績、興趣、評價、投入、時間，以及家長教育背景、能獲得的教育資源，共13種變數
+```{r cache=TRUE, warning=FALSE}
+str(dta)
+```
+```{r}
+head(dta)
+```
+在性別的部分，此項調查的男女比相似。<br />
+數學成績有75%的人介於556~687分，但仍有極值存在。<br />
+科學成績有75%的人介於517.9~627.2分，也有極值存在。<br />
+學習時間分為三種以45分鐘和3小時作為區分。<br />
+父母教育程度則分為小學、國中、高中、大學、及大學以上。<br />
+```{r}
+summary(dta)
+```
+
+## 載入 ggplot2 準備畫圖
+```{r cache=TRUE, warning=FALSE}
+library(ggplot2)
+require(ggplot2)
+#將底下的圖設定為黑白配色（theme_bw）
+old <- theme_set(theme_bw())
+```
+
+
+#資料分析與繪圖
+##  性別 vs 數學成績
+### boxplot
+由盒狀圖中可觀察到:男生與女生數學成績的平均數差異不大，而且女生數學成績的長距比男生小<br />
+但x軸座標間距很大，不容易看到細微的差異，因此要用統計資料的數據來加強論證<br />
+```{r cache=TRUE, warning=FALSE}
+ggplot(data = dta, aes(x = gender, y = math)) +
+ geom_boxplot() + coord_flip() +
+ labs( y = 'math', x = 'gender', 
+       title = 'Mathematical Score Box')
+```
+
+###信賴區間
+這裡95%的信賴區間由平均數取兩倍標準差而得，男生為612~621，女生為615~623，<br />
+兩者差距不大，甚至女生還略高
+```{r cache=TRUE, warning=FALSE}
+#計算95%信賴區間的函式
+with(dta, 
+     tapply(math, gender,
+     function(x) 
+       c(mean(x) + c(-2, 2) * sd(x)/sqrt(length(x)))))
+```
+
+### 用 t-test 檢驗
+p-value為0.3273大於0.05，因此性別對成績影響的顯著性不大
+```{r cache=TRUE, warning=FALSE}
+#加上參數 var.equal=TRUE 來假設變異數同值(不做Welch校正)
+t.test(math ~ gender, data = dta, var.equal = TRUE)
+```
+
+##  興趣 vs 數學成績
+### plot
+由圖中可觀察到:興趣越高，成績也越高<br />
+但相同興趣的人，彼此成績的差異也大<br />
+```{r cache=TRUE, warning=FALSE}
+ggplot(data = dta, aes(x = math.interest , y = math)) +
+ geom_point() +
+ stat_smooth(aes(y = math,x=math.interest), method = 'lm', se=F) + #平均值連線 
+ labs( y = 'grade', x = 'interest', title = 'interest vs grade')
+```
+
+##  投入時間 vs 數學成績
+### boxplot
+由盒狀圖中可觀察到:投入時間與數學成績相關性不大，成績高低可能受其他因素影響<br />
+```{r cache=TRUE, warning=FALSE}
+ggplot(data = dta, aes(x = math.hours, y = math)) +
+ geom_boxplot() + coord_flip() +
+ labs( y = 'grade', x = 'hours', 
+       title = 'HOURS VS GRADE')
+```
+
+###信賴區間
+這裡95%的信賴區間由平均數取兩倍標準差而得，45分鐘內為591~602，45分鐘到3小時為620~634，三小時以上為627~635，<br />
+讀45分鐘以上與三個小時對成績的影響不大
+```{r cache=TRUE, warning=FALSE}
+#計算95%信賴區間的函式
+with(dta, 
+     tapply(math, math.hours,
+     function(x) 
+       c(mean(x) + c(-2, 2) * sd(x)/sqrt(length(x)))))
+```
+
+## 父母教育 & 教育資源量  vs 數學成績
+
+### 觀察父母的教育背景是否與數學成績有關
+####利用factor把父母教育欄位的level定下來
+次序為小學、國中、高中、大學、及大學以上
+```{r cache=TRUE, warning=FALSE}
+dta$parental.education <- factor(dta$parental.education, 
+                       levels = c('elementary school',
+                                  'junior high school',
+                                  'high school',
+                                  'college', 
+                                  'university above'))
+```
+####不同父母教育程度下的數學分數平均數
+可以發現父母的教育程度對數學分數平均數有所影響，父母教育程度愈高，子女的數學成績平均來說也較高<br />
+但平均並不一定能代表整體分布，因此下面畫分布圖來查看相關
+```{r}
+tapply(dta$math, dta$parental.education, mean)
+```
+####boxplot
+父母教育程度與數學平均分數大致上呈正相關。<br />
+途中可觀察到另一現象，父母教育程度為國小的子女數學成績分布較廣，而父母為其他教育程度的子女四分位距較小
+```{r}
+library(Hmisc)
+#同父母教育程度下的數學分數平均數，加上信賴區間
+ggplot(data = dta, aes(x = parental.education, y = math)) +#選定座標軸資料
+  stat_summary(fun.data = 'mean_cl_boot', size = 1) +
+  scale_y_continuous(breaks = seq(510, 660, by = 20)) +#限定y座標範圍
+  geom_hline(yintercept = mean(dta$math) , linetype = 'dotted') +#boxplot圖標樣式
+  labs(x = '父母教育', y = '數學平均分數') +#座標名稱
+  coord_flip()#兩軸對調
+```
+#### 畫圖查看父母教育的效果與教育資源差距關聯性
+p-value遠小於0.05，父母教育程度與小孩數學成績有影響
+```{r cache=TRUE, warning=FALSE}
+anova(m1 <- lm(math ~ parental.education, data = dta))
+```
+雖然父母教育程度較高，子女或的教育資源也較多，但其實大部大部分的人教育資源都在6~12，與父母教育程度的相關性似乎關連不大<br />
+擁有相同的教育資源的人，成績還是有蠻大的差別，<br />
+由藍線可看出教育資源越多，成績也會越高
+```{r}
+ggplot(data = dta, aes(group = parental.education, y = math, x = educational.resources)) +#選定座標
+  geom_point() +#劃出點圖
+  stat_smooth(aes(group = parental.education,y = math,x=educational.resources), method = 'lm', se=F) +#平均值連線 
+  facet_grid( . ~  parental.education) +#依父母教育程度分組
+  labs(x = '教育資源', y = '數學分數')#座標軸名稱
+```
+
+
+####把教育資源加進模型
+p-value遠小於0.05，教育資源與數學成績有影響
+```{r cache=TRUE, warning=FALSE}
+
+anova(m2 <- update(m1, . ~ . +  educational.resources, data = dta))
+```
+
+####把學習興趣加進模型
+p-value遠小於0.05，學習興趣與數學成績有影響
+```{r cache=TRUE, warning=FALSE}
+
+anova(m3 <- update(m2, . ~ . +  math.interest, data = dta))
+```
+####把學習投入加進模型
+p-value小於0.05，學習投入與數學成績有影響
+```{r cache=TRUE, warning=FALSE}
+
+anova(m4 <- update(m3, . ~ . +  math.input, data = dta))
+```
+####把性別加進模型
+p-value小於0.05，性別與數學成績有影響
+```{r cache=TRUE, warning=FALSE}
+anova(n5 <- update(m4, . ~ . +  gender , data = dta))
+```
+####把評價加進模型
+p-value小於0.05，評價與數學成績有影響
+```{r cache=TRUE, warning=FALSE}
+anova(n6 <- update(n5, . ~ . +math.evaluation , data = dta))
+```
+### 畫圖
+父母教育程度的估計值較高，由此圖可說明父母教育程度對數學成績的影響比教育資源、投入時間與性別大
+```{r cache=TRUE, warning=FALSE}
+require(coefplot)
+m2 <- lm(math ~ parental.education+math.hours+gender+educational.resources -1, 
+         data = dta)
+coefplot(m2, xlab = '估計值', ylab = '迴歸變項', title = '反應變項 = 數學分數')
+```
+
+### 把資料與迴歸分析的預測值、殘差與影響度放進資料
+```{r cache=TRUE, warning=FALSE}
+fit_m2 <- data.frame(dta[, c(2, 12, 13)], fitted = fitted(m2), resid = resid(m2),
+                     infl = influence(m2)$hat )
+```
+
+### 依父母教育疊合真實觀測值與預測值
+```{r cache=TRUE, warning=FALSE}
+ggplot(data = fit_m2, aes(x = math, group = parental.education )) +
+ stat_density(geom = 'path', position = 'identity') +
+ stat_density(geom = 'path', position = 'identity', aes(x = fitted)) +
+ geom_vline(xintercept = c(with(dta, tapply(math,parental.education, mean))), linetype = 'dotted')+
+ facet_grid(parental.education ~ .) +
+ scale_x_continuous(breaks = seq(200, 900, by = 100))+
+ labs(x = '數學分數', y = '機率密度')
+```
+
+### 看殘差分配，依父母教育，檢視常態與變異數同質假設
+```{r cache=TRUE, warning=FALSE}
+ggplot(data = fit_m2, aes(x = scale(resid)), group = parental.education ) +
+ stat_density(geom = 'path', position = 'identity', aes(linetype = parental.education)) +
+ scale_linetype_manual(values = 5:1) +
+ guides(linetype = guide_legend(reverse = TRUE)) +
+ labs(x = '標準化殘差', y = '機率密度') +
+ theme(legend.position = c(.15, .8))
+```
+
+### 看看殘差的 Q-Q 圖，依父母教育。檢視常態假設
+```{r cache=TRUE, warning=FALSE}
+require(lattice)
+qqmath(~ scale(resid) | parental.education, data = fit_m2, type = c('p', 'g', 'r'),
+       xlab = '常態位數', ylab = '標準化殘差', layout = c(2, 3),
+       pch = '.', cex = 2)
+```
+
+### 畫預測值與殘差的散佈圖，檢查線性與等分散假設
+```{r cache=TRUE, warning=FALSE}
+require(MASS)
+ggplot(data = fit_m2, aes(x = fitted, y = scale(resid), group = parental.education )) +
+  geom_point(pch = 20, size = 1) +
+  stat_smooth(method = 'rlm', se = F) +
+  facet_grid(parental.education ~ .) +
+  labs(x = '數學預測值', y = '標準化殘差')
+```
+
+### 呈現影響值（影響估計結果過大的值）與標準化殘差
+```{r cache=TRUE, warning=FALSE}
+ggplot(data = fit_m2, aes(x = infl, y = scale(resid), group = parental.education)) +
+ geom_text(aes(label = rownames(fit_m2)), cex = 2) +
+ geom_hline(yintercept = 0, linetype = 'dotted') +
+ facet_grid(parental.education ~ .) +
+ labs(x = '影響值', y = '標準化殘差')
+```
+
+### 看看影響值
+```{r cache=TRUE, warning=FALSE}
+summary(influence(m2)$hat)
+```
+
+## 那些變項是否和數學成績最相關
+### 內在歸因
+此分類為與個人學習意願相關的，包含興趣、投入與評價<br />
+估計值相較於實際值來說過於集中，準確度還是不夠高<br />
+```{r}
+m5 <- lm(math ~ math.interest + math.hours+math.input+math.evaluation, data = dta)
+
+fit_m5 <- data.frame(dta[, c(2, 3, 6,5,4)], fitted = fitted(m5), resid = resid(m5), infl = influence(m5)$hat)
+
+ggplot(data = fit_m5, aes(x = math, group = math.hours )) +
+ stat_density(geom = 'path', position = 'identity') +
+ stat_density(geom = 'path', position = 'identity', aes(x = fitted)) +
+ geom_vline(xintercept = c(with(dta, tapply(math, math.hours, mean))), linetype = 'dotted')+
+ facet_grid(math.hours ~ .) +
+ scale_x_continuous(breaks = seq(200, 900, by = 100))+
+ labs(x = '數學分數', y = '機率密度')
+```
+
+###外在歸因
+此分類為與個人出生相關的，包含父母教育程度與教育資源<br />
+估計值相較於實際值來說依舊集中，仍無法完全接近實際狀況<br />
+```{r}
+m6 <- lm(math ~ educational.resources+parental.education , data = dta)
+
+fit_m6 <- data.frame(dta[, c(2, 13,12)], fitted = fitted(m6), resid = resid(m6), infl = influence(m6)$hat)
+
+ggplot(data = fit_m6, aes(x = math, group = parental.education )) +
+ stat_density(geom = 'path', position = 'identity') +
+ stat_density(geom = 'path', position = 'identity', aes(x = fitted)) +
+ geom_vline(xintercept = c(with(dta, tapply(math, parental.education, mean))), linetype = 'dotted')+
+ facet_grid(parental.education ~ .) +
+ scale_x_continuous(breaks = seq(200, 900, by = 100))+
+ labs(x = '數學分數', y = '機率密度')
+```
+
+###綜合因素
+此資料為估計興趣、時間、教育資源與父母教育程度對成績的影響，<br />
+由於在前面的統計中，這幾項與成績呈正相關，且相關程度較高，因此選取這幾項<br />
+而這幾項資料綜合起來的估計也較前述兩者準確<br />
+從以上圖表我們可推論，影響個人成績高低的因素有興趣、父母教育程度與教育資源，但其實或許還有其他因素，只是這三種的影響力較大<br />
+```{r}
+m7 <- lm(math ~ math.interest + math.hours  + educational.resources+parental.education, data = dta)
+
+fit_m7 <- data.frame(dta[, c(2,3,6,13,12)], fitted = fitted(m7), resid = resid(m7), infl = influence(m7)$hat)
+
+ggplot(data = fit_m7, aes(x = math, group = math.hours )) +
+ stat_density(geom = 'path', position = 'identity') +
+ stat_density(geom = 'path', position = 'identity', aes(x = fitted)) +
+ geom_vline(xintercept = c(with(dta, tapply(math, math.hours, mean))), linetype = 'dotted')+
+ facet_grid(math.hours ~ .) +
+ scale_x_continuous(breaks = seq(200, 900, by = 100))+
+ labs(x = '數學分數', y = '機率密度')
+```
+
+
+
+
+
+
