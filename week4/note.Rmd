@@ -1,0 +1,113 @@
+---
+title: "note"
+author: "yang"
+date: "July 30, 2018"
+output: html_document
+---
+
+#cut
+```{r error=TRUE}
+library(ggplot2)
+ggplot(data = ncbirths, 
+       aes(x = cut(weeks, breaks = 5), y = weight)) + 
+  geom_boxplot()
+```
+
+#log10
+```{r error=TRUE}
+# Scatterplot with coord_trans()
+ggplot(data = mammals, aes(x=BodyWt,y=BrainWt)) +
+  geom_point() + 
+  coord_trans(x = "log10", y = "log10")
+
+# Scatterplot with scale_x_log10() and scale_y_log10()
+ggplot(data = mammals, aes(x=BodyWt,y=BrainWt)) +
+  geom_point() +
+  scale_x_log10() + scale_y_log10()
+```
+
+# Compute correlation for all non-missing pairs
+```{r error=TRUE}
+ncbirths %>%
+  summarize(N = n(), r = cor(weight, weeks, use="pairwise.complete.obs"))
+```
+
+# Scatterplot with regression line
+```{r error=TRUE}
+ggplot(data = bdims, aes(x = hgt, y = wgt)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+# Estimate optimal value of my_slope
+```{r error=TRUE}
+add_line(my_slope = 1)
+```
+
+# geom_abline()
+```{r error=TRUE}
+ggplot(data = Galton_men, aes(x = father, y = height)) +
+  geom_point() + 
+  geom_abline(slope = 1, intercept = 0) + 
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+# Add slope and intercept
+```{r error=TRUE}
+bdims_summary %>%
+  mutate(slope = cor(bdims$hgt,bdims$wgt)*sd_wgt/sd_hgt, 
+         intercept = mean_wgt-slope*mean_hgt)
+```
+
+# Show the coefficients
+```{r error=TRUE}
+coef(mod)
+```
+
+# Mean of weights equal to mean of fitted values?
+```{r error=TRUE}
+mean(mod) == fitted.values(mod)
+```
+
+# Mean of the residuals殘差
+```{r error=TRUE}
+mean(residuals(mod))
+```
+#tidy to dataframe
+```{r error=TRUE}
+library(broom)
+# Create bdims_tidy
+bdims_tidy<-augment(mod)
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
