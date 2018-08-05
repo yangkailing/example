@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1533169682162.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A6416A53",
+    "lastKnownWriteTime" : 1533439184,
+    "last_content_update" : 1533439184196,
+    "path" : "C:/Users/user/Desktop/R/course/week5/example/app.R",
+    "project_path" : "app.R",
+    "properties" : {
+        "cursorPosition" : "11,17",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

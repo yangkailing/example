@@ -33,7 +33,7 @@ ui<-  navbarPage("Gender equality versus olmpic performance",
                               
                               sliderInput(inputId = "year",
                                           label = "Choose the year:",
-                                          min=1990,max=2016,value=2000,step=2),
+                                          min=1992,max=2016,value=2000,step=2),
                               
                               radioButtons("medal", "medal",
                                              c("yes"="y", "no"="n"))
