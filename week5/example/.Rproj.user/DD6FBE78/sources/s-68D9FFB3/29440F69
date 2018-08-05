@@ -2,18 +2,18 @@
     "collab_server" : "",
     "contents" : "",
     "created" : 1533450016041.000,
-    "dirty" : false,
+    "dirty" : true,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "0",
     "id" : "29440F69",
     "lastKnownWriteTime" : 1533450036,
-    "last_content_update" : 1533450036543,
+    "last_content_update" : 1533450793804,
     "path" : "C:/Users/user/Desktop/R/course/final/finallab/correlation.R",
     "project_path" : null,
     "properties" : {
-        "cursorPosition" : "36,35",
-        "scrollLine" : "27"
+        "cursorPosition" : "49,1",
+        "scrollLine" : "28"
     },
     "relative_order" : 2,
     "source_on_save" : false,

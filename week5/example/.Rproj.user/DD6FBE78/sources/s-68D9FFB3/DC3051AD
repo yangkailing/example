@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1533450862629.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "DC3051AD",
+    "lastKnownWriteTime" : 1533451393,
+    "last_content_update" : 1533451393159,
+    "path" : "C:/Users/user/Desktop/R/course/week5/example/bar/final.R",
+    "project_path" : "bar/final.R",
+    "properties" : {
+        "cursorPosition" : "56,63",
+        "scrollLine" : "39"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

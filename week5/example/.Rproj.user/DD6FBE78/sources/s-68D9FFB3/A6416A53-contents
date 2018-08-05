@@ -4,12 +4,9 @@ library(markdown)
 
 # Define UI for application that plots features of movies
 ui <- fluidPage(
-  
   titlePanel("Introduction"),
-  
   fluidRow(
-    
-    column(4,
+    column(10,
            includeMarkdown("introduction.md")
     )
   )
