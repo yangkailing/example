@@ -1,0 +1,12 @@
+name: myshiny
+title: myshiny
+username:
+account: antonia
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 393046
+bundleId: 1511046
+url: https://antonia.shinyapps.io/myshiny/
+when: 1533106976.45401
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,0 +1,31 @@
+library(shiny)
+library(leaflet)
+
+# Define UI 
+ui<-  navbarPage("Gender equality versus olmpic performance")
+                 tabPanel("map")
+                 tabPanel("correlation")
+
+# Define server function 
+function(input, output, session) {
+  output$plot <- renderPlot({
+    plot(cars, type=input$plotType)
+  })
+  
+  # Create scatterplot object the plotOutput function is expecting
+  output$scatterplot <- renderPlot({
+    ggplot(data = movies, aes_string(x = input$x, y = input$y)) +
+      geom_point()
+  })
+  
+  # Create text output stating the correlation between the two ploted 
+  output$correlation <- renderText({
+    r <- round(cor(movies[, input$x], movies[, input$y], use = "pairwise"), 3)
+    paste0("Correlation = ",r , ". Note: If the relationship between the two variables is not linear, the correlation coefficient will not be meaningful.")
+  })
+  #create basic information
+  output$about<-renderText({paste0()})
+}
+
+# Create the Shiny app object
+shinyApp(ui = ui, server = server)
