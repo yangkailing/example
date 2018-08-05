@@ -44,3 +44,5 @@ step4 生成文字雲<br />
 將以上任務利用 Rmd 製做一份分析報告，上傳 Rmd 與 html 至 github<br />
 [EDA](https://yangkailing.github.io/example/week4/lab1.html)
 ####  [Correlation and Regression]()
+# final
+## [first version](https://antonia.shinyapps.io/text/)
