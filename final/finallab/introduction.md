@@ -1,3 +1,8 @@
+# motivation
+We are curious about female athletes' performance in Olmpic games.Does it relates to gender equality?<br />
+We choose some of indexes about women and compare it to performance in Olmpic, wanting to know the relationship of it.<br />
+
+# Data
 This report contains two databases.One is about athlete performance of olmpic, and the other is about gender statistic.<br />
 
 ## Olmpic performance
