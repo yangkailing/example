@@ -49,4 +49,4 @@ step4 生成文字雲<br />
 ### data
 [Olmpic performance](https://www.kaggle.com/heesoo37/120-years-of-olympic-history-athletes-and-results)<br />
 [Gender Statistics](https://datacatalog.worldbank.org/dataset/gender-statistics)<br />
-[ppt](https://drive.google.com/open?id=1syV26JcBPe0-6vv0dz2sgPNBW7NRxrVZ)
+[ppt](https://drive.google.com/open?id=1yYBlY5A_vAEzom-62EAhbcN5WWARKlN_)
