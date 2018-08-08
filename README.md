@@ -46,3 +46,6 @@ step4 生成文字雲<br />
 ####  [Correlation and Regression]()
 # final
 ## [final project](https://antonia.shinyapps.io/new_data/)
+### data
+[Olmpic performance](https://www.kaggle.com/heesoo37/120-years-of-olympic-history-athletes-and-results)
+[Gender Statistics](https://datacatalog.worldbank.org/dataset/gender-statistics)
