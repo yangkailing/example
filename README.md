@@ -46,6 +46,7 @@ step4 生成文字雲<br />
 ####  [Correlation and Regression]()
 # final
 ## [final project](https://antonia.shinyapps.io/new_data/)
+分析女性奧運表現與各國對待女性的友善程度是否有相關性，ppt中有更詳細說明
 ### data
 [Olmpic performance](https://www.kaggle.com/heesoo37/120-years-of-olympic-history-athletes-and-results)<br />
 [Gender Statistics](https://datacatalog.worldbank.org/dataset/gender-statistics)<br />
